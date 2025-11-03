@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "//inkochetkov.github.io/timestamp/static/css/main.ad19bf8f.css",
+    "main.js": "//inkochetkov.github.io/timestamp/static/js/main.181a8c5a.js",
+    "static/js/453.1e2880a0.chunk.js": "//inkochetkov.github.io/timestamp/static/js/453.1e2880a0.chunk.js",
+    "index.html": "//inkochetkov.github.io/timestamp/index.html",
+    "main.ad19bf8f.css.map": "//inkochetkov.github.io/timestamp/static/css/main.ad19bf8f.css.map",
+    "main.181a8c5a.js.map": "//inkochetkov.github.io/timestamp/static/js/main.181a8c5a.js.map",
+    "453.1e2880a0.chunk.js.map": "//inkochetkov.github.io/timestamp/static/js/453.1e2880a0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ad19bf8f.css",
+    "static/js/main.181a8c5a.js"
+  ]
+}
