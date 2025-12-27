@@ -180,6 +180,82 @@ const TimestampConverter = () => {
     }
   };
 
+  // Полный список UTC зон с примерами городов
+  const timezones = [
+    { value: 'UTC-12', label: 'UTC-12 (Международная линия перемены даты, запад)' },
+    { value: 'UTC-11', label: 'UTC-11 (Американское Самоа)' },
+    { value: 'UTC-10', label: 'UTC-10 (Гавайи)' },
+    { value: 'UTC-9', label: 'UTC-9 (Аляска)' },
+    { value: 'UTC-8', label: 'UTC-8 (Тихоокеанское время - Лос-Анджелес, Ванкувер)' },
+    { value: 'UTC-7', label: 'UTC-7 (Горное время - Денвер, Финикс)' },
+    { value: 'UTC-6', label: 'UTC-6 (Центральное время - Чикаго, Мехико)' },
+    { value: 'UTC-5', label: 'UTC-5 (Восточное время - Нью-Йорк, Торонто)' },
+    { value: 'UTC-4', label: 'UTC-4 (Атлантическое время - Каракас, Сантьяго)' },
+    { value: 'UTC-3', label: 'UTC-3 (Бразилия, Буэнос-Айрес)' },
+    { value: 'UTC-2', label: 'UTC-2 (Среднеатлантическое время)' },
+    { value: 'UTC-1', label: 'UTC-1 (Азорские острова, Кабо-Верде)' },
+    { value: 'UTC', label: 'UTC (Всемирное координированное время)' },
+    { value: 'UTC+1', label: 'UTC+1 (Центральная Европа - Париж, Берлин)' },
+    { value: 'UTC+2', label: 'UTC+2 (Восточная Европа - Афины, Киев)' },
+    { value: 'UTC+3', label: 'UTC+3 (Москва, Стамбул, Эр-Рияд)' },
+    { value: 'UTC+4', label: 'UTC+4 (Дубай, Баку, Маврикий)' },
+    { value: 'UTC+5', label: 'UTC+5 (Исламабад, Екатеринбург)' },
+    { value: 'UTC+5:30', label: 'UTC+5:30 (Индия, Шри-Ланка)' },
+    { value: 'UTC+6', label: 'UTC+6 (Бангладеш, Астана)' },
+    { value: 'UTC+6:30', label: 'UTC+6:30 (Мьянма, Кокосовые острова)' },
+    { value: 'UTC+7', label: 'UTC+7 (Бангкок, Джакарта, Ханой)' },
+    { value: 'UTC+8', label: 'UTC+8 (Пекин, Сингапур, Перт)' },
+    { value: 'UTC+9', label: 'UTC+9 (Токио, Сеул, Якутск)' },
+    { value: 'UTC+9:30', label: 'UTC+9:30 (Аделаида, Дарвин)' },
+    { value: 'UTC+10', label: 'UTC+10 (Сидней, Гуам, Владивосток)' },
+    { value: 'UTC+10:30', label: 'UTC+10:30 (Остров Лорд-Хау)' },
+    { value: 'UTC+11', label: 'UTC+11 (Соломоновы острова, Новая Каледония)' },
+    { value: 'UTC+12', label: 'UTC+12 (Фиджи, Веллингтон)' },
+    { value: 'UTC+13', label: 'UTC+13 (Тонга, Самоа)' },
+    { value: 'UTC+14', label: 'UTC+14 (Острова Лайн)' }
+  ];
+
+  // Функция для локализации названий временных зон
+  const getTimezoneLabel = (tz) => {
+    if (language === 'ru') {
+      const russianLabels = {
+        'UTC-12': 'UTC-12 (Международная линия перемены даты, запад)',
+        'UTC-11': 'UTC-11 (Американское Самоа)',
+        'UTC-10': 'UTC-10 (Гавайи)',
+        'UTC-9': 'UTC-9 (Аляска)',
+        'UTC-8': 'UTC-8 (Тихоокеанское время - Лос-Анджелес, Ванкувер)',
+        'UTC-7': 'UTC-7 (Горное время - Денвер, Финикс)',
+        'UTC-6': 'UTC-6 (Центральное время - Чикаго, Мехико)',
+        'UTC-5': 'UTC-5 (Восточное время - Нью-Йорк, Торонто)',
+        'UTC-4': 'UTC-4 (Атлантическое время - Каракас, Сантьяго)',
+        'UTC-3': 'UTC-3 (Бразилия, Буэнос-Айрес)',
+        'UTC-2': 'UTC-2 (Среднеатлантическое время)',
+        'UTC-1': 'UTC-1 (Азорские острова, Кабо-Верде)',
+        'UTC': 'UTC (Всемирное координированное время)',
+        'UTC+1': 'UTC+1 (Центральная Европа - Париж, Берлин)',
+        'UTC+2': 'UTC+2 (Восточная Европа - Афины, Киев)',
+        'UTC+3': 'UTC+3 (Москва, Стамбул, Эр-Рияд)',
+        'UTC+4': 'UTC+4 (Дубай, Баку, Маврикий)',
+        'UTC+5': 'UTC+5 (Исламабад, Екатеринбург)',
+        'UTC+5:30': 'UTC+5:30 (Индия, Шри-Ланка)',
+        'UTC+6': 'UTC+6 (Бангладеш, Астана)',
+        'UTC+6:30': 'UTC+6:30 (Мьянма, Кокосовые острова)',
+        'UTC+7': 'UTC+7 (Бангкок, Джакарта, Ханой)',
+        'UTC+8': 'UTC+8 (Пекин, Сингапур, Перт)',
+        'UTC+9': 'UTC+9 (Токио, Сеул, Якутск)',
+        'UTC+9:30': 'UTC+9:30 (Аделаида, Дарвин)',
+        'UTC+10': 'UTC+10 (Сидней, Гуам, Владивосток)',
+        'UTC+10:30': 'UTC+10:30 (Остров Лорд-Хау)',
+        'UTC+11': 'UTC+11 (Соломоновы острова, Новая Каледония)',
+        'UTC+12': 'UTC+12 (Фиджи, Веллингтон)',
+        'UTC+13': 'UTC+13 (Тонга, Самоа)',
+        'UTC+14': 'UTC+14 (Острова Лайн)'
+      };
+      return russianLabels[tz] || tz;
+    }
+    return timezones.find(t => t.value === tz)?.label || tz;
+  };
+
   const t = translations[language];
 
   // Информация о миллисекундах в различных единицах времени
@@ -214,7 +290,7 @@ const TimestampConverter = () => {
   const getTimezoneOffset = (tz) => {
     if (tz === 'UTC') return 0;
     
-    const match = tz.match(/UTC([+-])(\d+):?(\d+)?/);
+    const match = tz.match(/UTC([+-])(\d+)(?::(\d+))?/);
     if (match) {
       const sign = match[1] === '+' ? 1 : -1;
       const hours = parseInt(match[2]);
@@ -391,17 +467,11 @@ const TimestampConverter = () => {
           <div className="input-group">
             <label>{t.timezone}:</label>
             <select value={timezone} onChange={(e) => setTimezone(e.target.value)}>
-              <option value="UTC">UTC</option>
-              <option value="UTC+1">UTC+1</option>
-              <option value="UTC+2">UTC+2</option>
-              <option value="UTC+3">UTC+3 ({language === 'ru' ? 'Москва' : 'Moscow'})</option>
-              <option value="UTC+4">UTC+4</option>
-              <option value="UTC+5">UTC+5</option>
-              <option value="UTC-1">UTC-1</option>
-              <option value="UTC-2">UTC-2</option>
-              <option value="UTC-3">UTC-3</option>
-              <option value="UTC-4">UTC-4</option>
-              <option value="UTC-5">UTC-5 ({language === 'ru' ? 'Нью-Йорк' : 'New York'})</option>
+              {timezones.map((tz) => (
+                <option key={tz.value} value={tz.value}>
+                  {getTimezoneLabel(tz.value)}
+                </option>
+              ))}
             </select>
           </div>
           <button onClick={convertToTimestamp}>{t.convert}</button>
@@ -437,17 +507,11 @@ const TimestampConverter = () => {
           <div className="input-group">
             <label>{t.timezone}:</label>
             <select value={timezoneTimestamp} onChange={(e) => setTimezoneTimestamp(e.target.value)}>
-              <option value="UTC">UTC</option>
-              <option value="UTC+1">UTC+1</option>
-              <option value="UTC+2">UTC+2</option>
-              <option value="UTC+3">UTC+3 ({language === 'ru' ? 'Москва' : 'Moscow'})</option>
-              <option value="UTC+4">UTC+4</option>
-              <option value="UTC+5">UTC+5</option>
-              <option value="UTC-1">UTC-1</option>
-              <option value="UTC-2">UTC-2</option>
-              <option value="UTC-3">UTC-3</option>
-              <option value="UTC-4">UTC-4</option>
-              <option value="UTC-5">UTC-5 ({language === 'ru' ? 'Нью-Йорк' : 'New York'})</option>
+              {timezones.map((tz) => (
+                <option key={tz.value} value={tz.value}>
+                  {getTimezoneLabel(tz.value)}
+                </option>
+              ))}
             </select>
           </div>
           <button onClick={convertToDate}>{t.convert}</button>
